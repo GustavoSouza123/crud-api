@@ -1,0 +1,14 @@
+### variables
+@apiurl = http://localhost:8000
+
+### GET home page
+GET {{apiurl}}/ HTTP/1.1
+
+### POST products
+POST {{apiurl}}/api/products HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Gustavo Souza",
+    "quantity": 1
+}
