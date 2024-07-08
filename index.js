@@ -1,7 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const connectToDatabase = require('./src/database/database');
-const Product = require('./models/product.model');
+const connectToDatabase = require('./src/database/connection');
+const Product = require('./src/models/product.model');
+const productsRoute = require('./src/routes/product.route');
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -9,21 +10,17 @@ const port = process.env.PORT || 8000;
 dotenv.config();
 connectToDatabase();
 
+// middleware
 app.use(express.json());
 
+// routes
+app.use('/api/products', productsRoute);
+
 app.get('/', (req, res) => {
-    res.status(200).json({ message: 'server running!' });
+    res.status(200).json({ message: 'Server running!' });
 });
 
-app.post('/api/products', async (req, res) => {
-    try {
-        const product = await Product.create(req.body);
-        res.status(200).json(product);
-    } catch(error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
+// run server
 app.listen(port, 'localhost', () => {
     console.log(`Server running on http://localhost:${port}`);
 });
