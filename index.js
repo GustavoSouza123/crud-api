@@ -1,12 +1,12 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const connectToDatabase = require('./src/database/connection');
-const Product = require('./src/models/product.model');
 const productsRoute = require('./src/routes/product.route');
 
 const app = express();
 const port = process.env.PORT || 8000;
 
+// connect to MongoDB database
 dotenv.config();
 connectToDatabase();
 
