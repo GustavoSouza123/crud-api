@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+<body>
+    <div class="container">
+        <%- include('./partials/navbar') %>
+        <div class="content">
+            <% if(products.length > 0) { %> 
+                <% products.forEach(product => { %>
+                    <h3 class="title"><%= product.name %></h3>
+                    <p>Quantity: <%= product.quantity %></p>
+                    <p>Price: $<%= product.price %></p>
+                <% }); %>
+            <% } else { %>
+                <p>No products found</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
